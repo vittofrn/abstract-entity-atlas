@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sei un Connettore — Abstract Entity Atlas</title>
+<link rel="stylesheet" href="css/style.css?v=17" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html" aria-label="Abstract Entity Atlas — home">
+        <svg class="aea-logo" viewBox="0 0 61 22" width="61" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect class="r1" x="1"  y="1"  width="41" height="8" pathLength="100"/>
+          <rect class="r2" x="45" y="1"  width="15" height="8" pathLength="100"/>
+          <rect class="r3" x="1"  y="13" width="15" height="8" pathLength="100"/>
+          <rect class="r4" x="34" y="13" width="26" height="8" pathLength="100"/>
+        </svg>
+      </a>
+      <nav class="nav-tabs">
+        <a href="quiz.html"><span>Take test</span></a>
+        <a href="index.html#archetipi"><span>Archetipi</span></a>
+        <a href="index.html#progetto"><span>Progetto</span></a>
+      </nav>
+      <span class="nav-spacer"></span>
+      <a class="nav-login" href="#">Login</a>
+      <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-mobile" id="navMobile">
+      <a href="quiz.html">Take test</a>
+      <a href="index.html#archetipi">Archetipi</a>
+      <a href="index.html#progetto">Progetto</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main class="result">
+    <!-- ENTITY MAP -->
+    <div class="map-wrap">
+      <img src="assets/img/entity-map.png" alt="La tua mappa dell'entità digitale" />
+    </div>
+
+    <!-- ARCHETYPE PANEL -->
+    <aside class="panel">
+      <div class="num">1</div>
+      <p class="sei">Sei un</p>
+      <h1>Connettore</h1>
+      <p class="desc">
+        Il connettore tiene ad utilizzare il proprio tempo per potersi
+        costantemente collegare a ciò che le persone fanno, al poter parlare con
+        loro, messaggiare, generalmente qualunque tipo di comunicazione.
+      </p>
+      <p class="pop">Componete il <strong>50,2%</strong> della popolazione.</p>
+
+      <div class="stats">
+        <div class="stat media">
+          <span class="lbl">40% Musica streaming</span>
+          <div class="track"><div class="bar" style="width:40%"></div></div>
+        </div>
+        <div class="stat media">
+          <span class="lbl">30% Video a breve durata</span>
+          <div class="track"><div class="bar" style="width:30%"></div></div>
+        </div>
+        <div class="stat media">
+          <span class="lbl">30% Videogiochi</span>
+          <div class="track"><div class="bar" style="width:30%"></div></div>
+        </div>
+        <div class="stat fb">
+          <span class="lbl">50% Facebook</span>
+          <div class="track"><div class="bar" style="width:50%"></div></div>
+        </div>
+        <div class="stat rd">
+          <span class="lbl">30% Reddit</span>
+          <div class="track"><div class="bar" style="width:30%"></div></div>
+        </div>
+        <div class="stat yt">
+          <span class="lbl">20% Youtube</span>
+          <div class="track"><div class="bar" style="width:20%"></div></div>
+        </div>
+      </div>
+
+      <div class="panel-actions">
+        <button class="btn-tick" id="downloadBtn">Download ↓</button>
+        <button class="btn-tick" id="shareBtn">Condividi ↗</button>
+        <a class="btn-tick" href="index.html">Home ⌂</a>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('navMobile');
+    burger.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const a = document.createElement('a');
+      a.href = 'assets/img/entity-map.png';
+      a.download = 'entity-map-connettore.png';
+      a.click();
+    });
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      const url = window.location.href;
+      if (navigator.share) {
+        try { await navigator.share({ title: 'Sono un Connettore', url }); } catch (e) {}
+      } else {
+        try { await navigator.clipboard.writeText(url); alert('Link copiato negli appunti'); }
+        catch (e) { alert(url); }
+      }
+    });
+  </script>
+</body>
+</html>
