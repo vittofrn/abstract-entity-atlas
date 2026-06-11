@@ -173,57 +173,82 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav-tabs {
   display: flex;
   align-items: center;
-  gap: 0;
-  border: 1.5px solid var(--white);
+  gap: 12px;
   margin-left: 8px;
 }
 .nav-tabs a {
+  box-sizing: border-box;
+  position: relative;
+  height: 40px;
+  min-width: 134px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-display);
   font-size: 16px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  padding: 8px 16px;
-  border-right: 1.5px solid var(--white);
-  position: relative;
-  overflow: hidden;
   color: var(--white);
-  transition: color .2s ease;
+  background: transparent;
+  transition: background .2s ease, color .2s ease;
 }
-.nav-tabs a:last-child { border-right: 0; }
-/* white fill sweeps in */
+.nav-tabs a span { position: relative; z-index: 1; display: block; }
+
+/* default: square-dotted frame (currentColor → inverts with the text) */
 .nav-tabs a::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: 4px;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg,  currentColor 0 2px, transparent 2px 5px) top    / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg,  currentColor 0 2px, transparent 2px 5px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(180deg, currentColor 0 2px, transparent 2px 5px) left   / 2px 100% no-repeat,
+    repeating-linear-gradient(180deg, currentColor 0 2px, transparent 2px 5px) right  / 2px 100% no-repeat;
+}
+
+/* Take Test (first tab) — inverted as a CTA: white fill, dark text + dark dotted border */
+.nav-tabs a:first-child {
   background: var(--white);
-  transform: translateX(-100%);
-  transition: transform .3s cubic-bezier(.16,1,.3,1);
-  z-index: 0;
+  color: var(--bg);
 }
-/* span sits above the fill so text is always readable */
-.nav-tabs a span {
-  position: relative;
-  z-index: 1;
-  transition: color .2s ease;
+
+/* click / current page → white fill with dark text */
+.nav-tabs a:active,
+.nav-tabs a.active {
+  background: var(--white);
+  color: var(--bg);
 }
-.nav-tabs a:hover span,
-.nav-tabs a.active span { color: var(--bg); }
-/* dashed border overlay on hover — appears as inner dashed frame */
-.nav-tabs a::after {
+
+/* HOVER → stays dark, white text, dense white "barcode" tick frame + corner blocks */
+.nav-tabs a:hover::before {
+  inset: 3px;
+  background:
+    repeating-linear-gradient(90deg,  currentColor 0 1px, transparent 1px 4px) top    / 100% 6px no-repeat,
+    repeating-linear-gradient(90deg,  currentColor 0 1px, transparent 1px 4px) bottom / 100% 6px no-repeat,
+    repeating-linear-gradient(0deg,   currentColor 0 1px, transparent 1px 4px) left   / 6px 100% no-repeat,
+    repeating-linear-gradient(0deg,   currentColor 0 1px, transparent 1px 4px) right  / 6px 100% no-repeat;
+}
+.nav-tabs a:hover::after {
   content: '';
   position: absolute;
-  inset: 2px;
-  border: 2px dashed var(--white);
-  opacity: 0;
-  transition: opacity .2s ease, border-color .2s ease;
-  z-index: 2;
+  inset: 3px;
   pointer-events: none;
+  background:
+    linear-gradient(currentColor, currentColor) top left     / 9px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) top right    / 9px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) bottom left  / 9px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) bottom right / 9px 9px no-repeat;
 }
-.nav-tabs a:hover::before { transform: translateX(0); }
-.nav-tabs a:hover { color: var(--bg); }
-.nav-tabs a:hover::after { opacity: 1; border-color: var(--bg); }
-.nav-tabs a.active::before { transform: translateX(0); }
-.nav-tabs a.active { color: var(--bg); }
+
+/* CLICK / current page → clean solid border */
+.nav-tabs a:active::before,
+.nav-tabs a.active::before {
+  inset: 3px;
+  background: none;
+  border: 2px solid currentColor;
+}
 .nav-spacer { flex: 1; }
 .nav-login {
   font-family: var(--font-display);
@@ -317,45 +342,67 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Default: 2px dashed border (Figma: border-2 border-dashed)
    Hover:   border grows to 5px — gives 3D-lift look
    Press:   white wipe sweeps left→right, inverts text color   */
+/* same language as the navbar buttons, kept in dark mode (no white fill):
+   default dotted frame → hover barcode tick frame + corner blocks → click solid border */
 .btn-tick {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--bg);
+  min-height: 40px;
+  background: transparent;
   color: var(--white);
   font-family: var(--font-display);
   font-size: 16px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 9px 18px;
-  /* Figma default: border-2 border-dashed */
-  border: 2px dashed var(--white);
-  overflow: hidden;
-  isolation: isolate;
-  transition: border-width .18s cubic-bezier(.16,1,.3,1),
-              color .2s ease,
-              opacity .15s;
+  padding: 9px 20px;
+  border: 0;
+  cursor: pointer;
+  transition: opacity .15s;
 }
-/* white fill that sweeps on press (Figma's "Empty rectangle") */
+/* default: square-dotted frame */
 .btn-tick::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: var(--white);
-  transform: translateX(-101%);
-  transition: transform .3s cubic-bezier(.16,1,.3,1);
-  z-index: -1;
+  inset: 4px;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg,  currentColor 0 2px, transparent 2px 5px) top    / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg,  currentColor 0 2px, transparent 2px 5px) bottom / 100% 2px no-repeat,
+    repeating-linear-gradient(180deg, currentColor 0 2px, transparent 2px 5px) left   / 2px 100% no-repeat,
+    repeating-linear-gradient(180deg, currentColor 0 2px, transparent 2px 5px) right  / 2px 100% no-repeat;
 }
-/* hover → border grows (Figma: border-8 border-dashed) */
-.btn-tick:hover { border-width: 5px; }
-/* press → wipe sweeps, text inverts */
-.btn-tick:active::before { transform: translateX(0); }
-.btn-tick:active { color: var(--bg); border-width: 0; }
-
+/* hover: barcode tick frame + solid corner blocks */
+.btn-tick:hover::before {
+  inset: 3px;
+  background:
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 4px) top    / 100% 6px no-repeat,
+    repeating-linear-gradient(90deg, currentColor 0 1px, transparent 1px 4px) bottom / 100% 6px no-repeat,
+    repeating-linear-gradient(0deg,  currentColor 0 1px, transparent 1px 4px) left   / 6px 100% no-repeat,
+    repeating-linear-gradient(0deg,  currentColor 0 1px, transparent 1px 4px) right  / 6px 100% no-repeat;
+}
+.btn-tick:hover::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  pointer-events: none;
+  background:
+    linear-gradient(currentColor, currentColor) top left     / 9px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) top right    / 9px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) bottom left  / 9px 9px no-repeat,
+    linear-gradient(currentColor, currentColor) bottom right / 9px 9px no-repeat;
+}
+/* click: clean solid border */
+.btn-tick:active::before {
+  inset: 3px;
+  background: none;
+  border: 2px solid currentColor;
+}
 .btn-tick[disabled] { opacity: 0.3; cursor: not-allowed; }
-.btn-tick.ghost { border-color: rgba(255,255,255,0.4); }
+/* primary action (e.g. quiz "Prossima") → inverted: white fill, dark text + frame */
+.btn-tick.primary { background: var(--white); color: var(--bg); }
 
 /* ============================================================
    HOMEPAGE
@@ -838,17 +885,39 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav-tabs, .nav-login { display: none; }
   .nav-burger { display: flex; }
 
-  .hero .deco-l, .hero .deco-r,
   .intro .deco-l, .intro .deco-r,
-  .progetto .deco-l, .progetto .deco-r,
-  .tag-col.left .tag-item::before,
-  .tag-col.right .tag-item::after { display: none; }
+  .progetto .deco-l, .progetto .deco-r { display: none; }
 
-  .archetipi-grid { grid-template-columns: 1fr; gap: 28px; }
-  .tag-col { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 14px; }
-  .tag-col.left, .tag-col.right { align-items: center; }
-  .tag-col img { width: calc(50% - 8px); max-width: 260px; }
-  .archetipi-center { order: -1; }
+  /* HERO mobile: full (uncut) PCB traces anchored to the sides, top & bottom.
+     Hero is made taller so there's clear room between the traces and the logo. */
+  .hero { overflow: hidden; min-height: 1040px; }
+  .hero .deco-l, .hero .deco-r {
+    display: block;
+    transform: none;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;             /* keep full artwork, no cropping */
+  }
+  .hero .deco-r { top: 0; bottom: auto; }       /* "quad": chip on left edge */
+  .hero .deco-l { bottom: 0; top: auto; }       /* "penta": chip on right edge */
+  .hero-logo { width: 210px; }
+  .scroll-hint { display: none; }
+
+  /* ARCHETIPI mobile: title on top, two tag columns below with side traces */
+  .archetipi { overflow-x: hidden; }
+  .archetipi-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "center center"
+      "left right";
+    gap: 30px 14px;
+    align-items: start;
+  }
+  .archetipi-center { grid-area: center; }
+  .tag-col.left  { grid-area: left;  align-items: flex-start; flex-direction: column; gap: 30px; }
+  .tag-col.right { grid-area: right; align-items: flex-end;   flex-direction: column; gap: 30px; }
+  .tag-col img { width: 100%; max-width: none; }
 
   .photos img { width: 80vw; height: 260px; }
 

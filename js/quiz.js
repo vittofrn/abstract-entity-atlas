@@ -118,7 +118,7 @@ function renderQuestion() {
     <div class="q-actions">
       <button class="btn-tick ghost" id="prevBtn">Precedente</button>
       <span class="spacer"></span>
-      <button class="btn-tick" id="nextBtn">${isLast ? "Completa" : "Prossima"}</button>
+      <button class="btn-tick primary" id="nextBtn">${isLast ? "Completa" : "Prossima"}</button>
     </div>`;
 
   if (step === 0) document.getElementById("prevBtn").style.visibility = "hidden";
