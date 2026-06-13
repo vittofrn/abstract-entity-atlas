@@ -89,9 +89,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   line-height: 1.45;
   text-align: center;
   color: #efefef;
-  max-width: 46ch;
+  max-width: 52ch;
   margin: 0 auto;
+  text-wrap: balance;   /* even line lengths, no short orphan last line */
 }
+.hero-caption, .desc, .ac-desc, .start .sub, .cta .lead { text-wrap: balance; }
 .eyebrow {
   font-family: var(--font-display);
   font-weight: 700;
