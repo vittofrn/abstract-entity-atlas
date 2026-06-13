@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Abstract Entity Atlas — Vittoria Fornari</title>
 <meta name="description" content="Abstract Entity Atlas: un atlante delle identità digitali. Scopri il tuo archetipo." />
-<link rel="stylesheet" href="css/style.css?v=30" />
+<link rel="stylesheet" href="css/style.css?v=31" />
 </head>
 <body>
 
@@ -159,7 +159,10 @@
       burger.setAttribute('aria-expanded', open);
     });
     menu.querySelectorAll('a').forEach(a =>
-      a.addEventListener('click', () => menu.classList.remove('open')));
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }));
   </script>
   <script src="js/archetypes.js"></script>
   <script src="js/reveal.js"></script>
