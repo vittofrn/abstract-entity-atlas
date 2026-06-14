@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sei un Connettore — Abstract Entity Atlas</title>
-<link rel="stylesheet" href="css/style.css?v=36" />
+<link rel="stylesheet" href="css/style.css?v=37" />
 </head>
 <body>
 
@@ -37,57 +37,15 @@
     </nav>
   </header>
 
-  <main class="result">
-    <!-- ENTITY MAP -->
-    <div class="map-wrap">
-      <img src="assets/img/entity-map.png" alt="La tua mappa dell'entità digitale" />
+  <main class="result-page">
+    <figure class="result-figure">
+      <img id="resImg" src="assets/img/res-connettore.png" alt="Il tuo risultato — Abstract Entity Atlas" />
+    </figure>
+    <div class="result-actions">
+      <button class="btn-tick" id="downloadBtn">Download ↓</button>
+      <button class="btn-tick" id="shareBtn">Condividi ↗</button>
+      <a class="btn-tick" href="index.html">Home ⌂</a>
     </div>
-
-    <!-- ARCHETYPE PANEL -->
-    <aside class="panel">
-      <div class="num">1</div>
-      <p class="sei">Sei un</p>
-      <h1>Connettore</h1>
-      <p class="desc">
-        Il connettore tiene ad utilizzare il proprio tempo per potersi
-        costantemente collegare a ciò che le persone fanno, al poter parlare con
-        loro, messaggiare, generalmente qualunque tipo di comunicazione.
-      </p>
-      <p class="pop">Componete il <strong>50,2%</strong> della popolazione.</p>
-
-      <div class="stats">
-        <div class="stat media x">
-          <span class="lbl">40% Musica streaming</span>
-          <div class="barrow"><span class="cap"></span><span class="bar" style="width:40%"></span></div>
-        </div>
-        <div class="stat media zig">
-          <span class="lbl">30% Video a breve durata</span>
-          <div class="barrow"><span class="cap"></span><span class="bar" style="width:30%"></span></div>
-        </div>
-        <div class="stat media dot">
-          <span class="lbl">30% Videogiochi</span>
-          <div class="barrow"><span class="cap"></span><span class="bar" style="width:30%"></span></div>
-        </div>
-        <div class="stat fb">
-          <span class="lbl">50% Facebook</span>
-          <div class="barrow"><span class="cap"></span><span class="bar" style="width:82%"></span></div>
-        </div>
-        <div class="stat rd">
-          <span class="lbl">30% Reddit</span>
-          <div class="barrow"><span class="cap"></span><span class="bar" style="width:55%"></span></div>
-        </div>
-        <div class="stat yt">
-          <span class="lbl">20% Youtube</span>
-          <div class="barrow"><span class="cap"></span><span class="bar" style="width:40%"></span></div>
-        </div>
-      </div>
-
-      <div class="panel-actions">
-        <button class="btn-tick" id="downloadBtn">Download ↓</button>
-        <button class="btn-tick" id="shareBtn">Condividi ↗</button>
-        <a class="btn-tick" href="index.html">Home ⌂</a>
-      </div>
-    </aside>
   </main>
 
   <script>
@@ -98,16 +56,34 @@
       burger.setAttribute('aria-expanded', open);
     });
 
+    /* archetype results from Figma !Esempi Archetipi */
+    const ARCHETYPES = {
+      connettore:   { img: 'res-connettore.png',   name: 'Connettore'   },
+      intrattenuto: { img: 'res-intrattenuto.png', name: 'Intrattenuto' },
+      aggiornato:   { img: 'res-aggiornato.png',   name: 'Aggiornato'   },
+      lavoratore:   { img: 'res-lavoratore.png',   name: 'Lavoratore'   },
+      spettatore:   { img: 'res-spettatore.png',   name: 'Spettatore'   },
+      consumatore:  { img: 'res-consumatore.png',  name: 'Consumatore'  },
+      tifoso:       { img: 'res-tifoso.png',        name: 'Tifoso'       },
+      fan:          { img: 'res-fan.png',           name: 'Fan'          }
+    };
+    const key = (new URLSearchParams(location.search).get('a') || 'connettore').toLowerCase();
+    const arch = ARCHETYPES[key] || ARCHETYPES.connettore;
+    const img = document.getElementById('resImg');
+    img.src = 'assets/img/' + arch.img;
+    img.alt = 'Sei un ' + arch.name;
+    document.title = arch.name + ' — Abstract Entity Atlas';
+
     document.getElementById('downloadBtn').addEventListener('click', () => {
       const a = document.createElement('a');
-      a.href = 'assets/img/entity-map.png';
-      a.download = 'entity-map-connettore.png';
+      a.href = 'assets/img/' + arch.img;
+      a.download = 'abstract-entity-atlas-' + key + '.png';
       a.click();
     });
     document.getElementById('shareBtn').addEventListener('click', async () => {
       const url = window.location.href;
       if (navigator.share) {
-        try { await navigator.share({ title: 'Sono un Connettore', url }); } catch (e) {}
+        try { await navigator.share({ title: 'Sono un ' + arch.name, url }); } catch (e) {}
       } else {
         try { await navigator.clipboard.writeText(url); alert('Link copiato negli appunti'); }
         catch (e) { alert(url); }

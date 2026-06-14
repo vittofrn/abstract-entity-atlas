@@ -828,6 +828,31 @@ ul { margin: 0; padding: 0; list-style: none; }
 .panel-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .panel-actions .btn-tick { font-size: 13px; padding: 7px 13px; }
 
+/* ── archetype result page (full exported image + our buttons) ── */
+.result-page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 36px) var(--gutter) 56px;
+}
+.result-figure {
+  margin: 0;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #141414;
+  overflow-x: auto;            /* scroll on narrow screens, image stays legible */
+}
+.result-figure img {
+  display: block;
+  width: 100%;
+  min-width: 900px;
+}
+.result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
 .map-meta { display: none; }
 
 /* ============================================================

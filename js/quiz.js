@@ -130,8 +130,13 @@ function renderQuestion() {
     if (step > 0) { step--; render(); } else { step = -1; render(); }
   });
   document.getElementById("nextBtn").addEventListener("click", () => {
-    if (isLast) { window.location.href = "result.html"; }
-    else { step++; render(); }
+    if (isLast) {
+      // no scoring yet → pick one of the possible archetype results
+      const keys = ["connettore","intrattenuto","aggiornato","lavoratore",
+                    "spettatore","consumatore","tifoso","fan"];
+      const pick = keys[Math.floor(Math.random() * keys.length)];
+      window.location.href = "result.html?a=" + pick;
+    } else { step++; render(); }
   });
 }
 
