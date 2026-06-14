@@ -80,12 +80,10 @@ const QUESTIONS = [
 const TOTAL = QUESTIONS.length;
 const answers = QUESTIONS.map(() => []);
 let step = -1; // -1 = start screen, 0..9 = questions
-let lastProgress = 0; // fraction 0..1, for animating the progress bar
 
 const card = document.getElementById("card");
 
 function renderStart() {
-  lastProgress = 0; // reset so the bar grows from empty when the quiz begins
   card.innerHTML = `
     <div class="start">
       <p class="top-note">In media ci vogliono 7 minuti.</p>
@@ -99,6 +97,8 @@ function renderStart() {
 function renderQuestion() {
   const q = QUESTIONS[step];
   const selected = answers[step];
+  const pct = ((step + 1) / TOTAL) * 100;
+
   const opts = q.options.map((label, i) => {
     const checked = selected.includes(i);
     const disabled = !checked && selected.length >= q.max;
@@ -113,7 +113,7 @@ function renderQuestion() {
       <div class="q-num">${step + 1}/${TOTAL}</div>
       <div class="q-text">${q.text}${q.note ? `<span class="q-note">(${q.note})</span>` : ""}</div>
     </div>
-    <div class="q-progress"><div class="q-progress-fill" style="width:${lastProgress * 100}%"></div></div>
+    <div class="q-progress" style="width:${64 + (pct / 100) * 380}px;max-width:90%"></div>
     <div class="q-options">${opts}</div>
     <div class="q-actions">
       <button class="btn-tick ghost" id="prevBtn">Precedente</button>
@@ -133,16 +133,6 @@ function renderQuestion() {
     if (isLast) { window.location.href = "result.html"; }
     else { step++; render(); }
   });
-
-  // animate the progress fill from the previous value to the current step
-  // (markup starts it at lastProgress; force a reflow, then grow to target)
-  const target = (step + 1) / TOTAL;
-  const fill = card.querySelector(".q-progress-fill");
-  if (fill) {
-    void fill.offsetWidth;               // commit the start width
-    fill.style.width = target * 100 + "%"; // → CSS transition animates
-  }
-  lastProgress = target;
 }
 
 function toggle(i) {
