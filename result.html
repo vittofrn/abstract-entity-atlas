@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sei un Connettore — Abstract Entity Atlas</title>
-<link rel="stylesheet" href="css/style.css?v=37" />
+<link rel="stylesheet" href="css/style.css?v=39" />
 </head>
 <body>
 
@@ -39,13 +39,15 @@
 
   <main class="result-page">
     <figure class="result-figure">
-      <img id="resImg" src="assets/img/res-connettore.png" alt="Il tuo risultato — Abstract Entity Atlas" />
+      <img id="resImg" class="d-only" src="assets/img/res-connettore.png" alt="Il tuo risultato — Abstract Entity Atlas" />
+      <img id="resImgMobile" class="m-only" src="assets/img/res-connettore-m-top.png" alt="Il tuo risultato — Abstract Entity Atlas" />
     </figure>
     <div class="result-actions">
       <button class="btn-tick" id="downloadBtn">Download ↓</button>
       <button class="btn-tick" id="shareBtn">Condividi ↗</button>
       <a class="btn-tick" href="index.html">Home ⌂</a>
     </div>
+    <img id="resFootMobile" class="m-only result-foot" src="assets/img/res-connettore-m-foot.png" alt="" />
   </main>
 
   <script>
@@ -69,9 +71,12 @@
     };
     const key = (new URLSearchParams(location.search).get('a') || 'connettore').toLowerCase();
     const arch = ARCHETYPES[key] || ARCHETYPES.connettore;
-    const img = document.getElementById('resImg');
-    img.src = 'assets/img/' + arch.img;
-    img.alt = 'Sei un ' + arch.name;
+    const base = key in ARCHETYPES ? key : 'connettore';
+    document.getElementById('resImg').src = 'assets/img/' + arch.img;
+    document.getElementById('resImg').alt = 'Sei un ' + arch.name;
+    document.getElementById('resImgMobile').src = 'assets/img/res-' + base + '-m-top.png';
+    document.getElementById('resImgMobile').alt = 'Sei un ' + arch.name;
+    document.getElementById('resFootMobile').src = 'assets/img/res-' + base + '-m-foot.png';
     document.title = arch.name + ' — Abstract Entity Atlas';
 
     document.getElementById('downloadBtn').addEventListener('click', () => {
