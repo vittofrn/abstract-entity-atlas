@@ -37,8 +37,8 @@
   --youtube:  #ff0000;
   --instagram:#ff0069;
 
-  --font-display: "PP NeueBit", "Bakemono Text", sans-serif;
-  --font-body: "Bakemono Text", sans-serif;
+  --font-display: "PP NeueBit", "Courier New", monospace;
+  --font-body: "Bakemono Text", "Courier New", monospace;
 
   --maxw: 1280px;
   --gutter: clamp(18px, 5vw, 64px);
