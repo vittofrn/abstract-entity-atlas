@@ -79,20 +79,10 @@ const QUESTIONS = [
 
 const TOTAL = QUESTIONS.length;
 const answers = QUESTIONS.map(() => []);
-let step = -1; // -1 = start screen, 0..9 = questions
+let step = 0; // 0..9 = questions (no start screen — opens on Q1)
 
 const card = document.getElementById("card");
 
-function renderStart() {
-  card.innerHTML = `
-    <div class="start">
-      <p class="top-note">In media ci vogliono 7 minuti.</p>
-      <button class="btn-take" id="startBtn"><span class="inner">Take test</span></button>
-      <p class="sub">Vuoi scoprire come appare la tua entità digitale? Raccontaci di te
-      in questo test e la creeremo per te.</p>
-    </div>`;
-  document.getElementById("startBtn").addEventListener("click", () => { step = 0; render(); });
-}
 
 function renderQuestion() {
   const q = QUESTIONS[step];
@@ -127,7 +117,7 @@ function renderQuestion() {
     el.addEventListener("click", () => toggle(parseInt(el.dataset.i, 10)));
   });
   document.getElementById("prevBtn").addEventListener("click", () => {
-    if (step > 0) { step--; render(); } else { step = -1; render(); }
+    if (step > 0) { step--; render(); }
   });
   document.getElementById("nextBtn").addEventListener("click", () => {
     if (isLast) {
@@ -153,8 +143,7 @@ function toggle(i) {
 }
 
 function render() {
-  if (step === -1) renderStart();
-  else renderQuestion();
+  renderQuestion();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
