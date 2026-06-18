@@ -113,7 +113,7 @@ function renderQuestion() {
       <div class="q-num">${step + 1}/${TOTAL}</div>
       <div class="q-text">${q.text}${q.note ? `<span class="q-note">(${q.note})</span>` : ""}</div>
     </div>
-    <div class="q-progress" style="width:${64 + (pct / 100) * 380}px;max-width:90%"></div>
+    <div class="q-progress"><span class="q-progress-fill" style="width:${pct}%"></span></div>
     <div class="q-options">${opts}</div>
     <div class="q-actions">
       <button class="btn-tick ghost" id="prevBtn">Precedente</button>

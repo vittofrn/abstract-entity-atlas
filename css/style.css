@@ -681,10 +681,16 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* progress */
 .q-progress {
   height: 6px;
-  width: 64px;
-  background: var(--white);
+  width: 100%;                       /* full width of the question box above */
+  background: rgba(255,255,255,0.14);
   margin: 0 0 30px 0;
-  transition: width .3s ease;
+  overflow: hidden;
+}
+.q-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--white);
+  transition: width .35s ease;
 }
 
 /* options box */
