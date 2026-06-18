@@ -5,7 +5,7 @@
 const ARCHETYPES = {
   connettore: {
     name: "Connettore",
-    img: "assets/img/tag-connettore.png",
+    img: "assets/img/tag-connettore.png?v=2",
     pop: "50,2%",
     desc: "Utilizza Internet principalmente per mantenere i rapporti sociali, restando in contatto con amici e familiari anche a distanza.",
     media: [
@@ -21,7 +21,7 @@ const ARCHETYPES = {
   },
   consumatore: {
     name: "Consumatore",
-    img: "assets/img/tag-consumatore.png",
+    img: "assets/img/tag-consumatore.png?v=2",
     pop: "27,3%",
     desc: "Utilizza la rete per informarsi su prodotti, confrontare offerte e fare acquisti online tramite e-commerce.",
     media: [
@@ -37,7 +37,7 @@ const ARCHETYPES = {
   },
   fan: {
     name: "Fan",
-    img: "assets/img/tag-fan.png",
+    img: "assets/img/tag-fan.png?v=2",
     pop: "20,4%",
     desc: "Segue celebrità, creator e influencer, consumando contenuti e aggiornamenti legati ai propri idoli.",
     media: [
@@ -53,7 +53,7 @@ const ARCHETYPES = {
   },
   tifoso: {
     name: "Tifoso",
-    img: "assets/img/tag-tifoso.png",
+    img: "assets/img/tag-tifoso.png?v=2",
     pop: "23,5%",
     desc: "Segue eventi sportivi, squadre e atleti, usando Internet per aggiornamenti, risultati e contenuti legati allo sport.",
     media: [
@@ -69,7 +69,7 @@ const ARCHETYPES = {
   },
   spettatore: {
     name: "Spettatore",
-    img: "assets/img/tag-spettatore.png",
+    img: "assets/img/tag-spettatore.png?v=2",
     pop: "23,4%",
     desc: "Utilizza Internet principalmente per guardare contenuti in streaming o dirette, senza interagire attivamente.",
     media: [
@@ -85,7 +85,7 @@ const ARCHETYPES = {
   },
   intrattenuto: {
     name: "Intrattenuto",
-    img: "assets/img/tag-intrattenuto.png",
+    img: "assets/img/tag-intrattenuto.png?v=2",
     pop: "39,7%",
     desc: "Naviga online soprattutto per intrattenimento e distrazione, usando media e contenuti digitali per riempire il tempo libero.",
     media: [
@@ -101,7 +101,7 @@ const ARCHETYPES = {
   },
   aggiornato: {
     name: "Aggiornato",
-    img: "assets/img/tag-aggiornato.png",
+    img: "assets/img/tag-aggiornato.png?v=2",
     pop: "35,4%",
     desc: "Consulta il web principalmente per informarsi e seguire le notizie, mantenendosi aggiornato su ciò che accade nel mondo.",
     media: [
@@ -117,7 +117,7 @@ const ARCHETYPES = {
   },
   lavoratore: {
     name: "Lavoratore",
-    img: "assets/img/tag-lavoratore.png",
+    img: "assets/img/tag-lavoratore.png?v=2",
     pop: "21,5%",
     desc: "Sfrutta Internet come strumento professionale, per svolgere attività lavorative, ricerche e networking.",
     media: [
