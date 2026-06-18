@@ -83,9 +83,9 @@ const ARCHETYPES = {
       { label: "15% Discord", pct: 15, color: "#5865F2" },
     ]
   },
-  perditempo: {
-    name: "Perditempo",
-    img: "assets/img/tag-perditempo.png",
+  intrattenuto: {
+    name: "Intrattenuto",
+    img: "assets/img/tag-intrattenuto.png",
     pop: "39,7%",
     desc: "Naviga online soprattutto per intrattenimento e distrazione, usando media e contenuti digitali per riempire il tempo libero.",
     media: [
