@@ -836,7 +836,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ── archetype result page (full exported image + our buttons) ── */
 .result-page {
-  max-width: 1320px;
+  max-width: 1720px;
   margin: 0 auto;
   padding: clamp(16px, 3vw, 36px) var(--gutter) 56px;
 }
@@ -851,7 +851,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .result-figure img {
   display: block;
   width: 100%;
-  max-width: 1280px;           /* never upscale past native → stays crisp */
+  max-width: 1600px;           /* native is 2560 → still crisp when enlarged */
   min-width: 900px;
   image-rendering: -webkit-optimize-contrast;
 }
