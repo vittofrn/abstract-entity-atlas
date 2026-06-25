@@ -842,8 +842,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .result-figure {
   margin: 0 auto;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: #141414;
+  border: 0;
+  background: #1e1e1e;
   overflow-x: auto;            /* scroll on narrow screens, image stays legible */
   display: flex;
   justify-content: center;
