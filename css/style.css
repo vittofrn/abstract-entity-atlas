@@ -838,7 +838,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .result-page {
   max-width: 1720px;
   margin: 0 auto;
-  padding: clamp(16px, 3vw, 36px) var(--gutter) 56px;
+  padding: 0 var(--gutter) 56px;   /* flush to navbar */
 }
 .result-figure {
   margin: 0 auto;

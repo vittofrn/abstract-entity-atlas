@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sei un Connettore — Abstract Entity Atlas</title>
-<link rel="stylesheet" href="css/style.css?v=49" />
+<link rel="stylesheet" href="css/style.css?v=50" />
 <style>body{background-image:none;background-color:#1e1e1e}</style>
 </head>
 <body>
@@ -40,8 +40,8 @@
 
   <main class="result-page">
     <figure class="result-figure">
-      <img id="resImg" class="d-only" src="assets/img/res-connettore.png?v=3" alt="Il tuo risultato — Abstract Entity Atlas" />
-      <img id="resImgMobile" class="m-only" src="assets/img/res-connettore-m-top.png?v=3" alt="Il tuo risultato — Abstract Entity Atlas" />
+      <img id="resImg" class="d-only" src="assets/img/res-connettore.png?v=4" alt="Il tuo risultato — Abstract Entity Atlas" />
+      <img id="resImgMobile" class="m-only" src="assets/img/res-connettore-m-top.png?v=4" alt="Il tuo risultato — Abstract Entity Atlas" />
     </figure>
     <div class="result-actions">
       <button class="btn-tick" id="downloadBtn">Download ↓</button>
@@ -75,9 +75,9 @@
     const base = key in ARCHETYPES ? key : 'connettore';
     document.getElementById('resImg').src = 'assets/img/' + arch.img + '?v=3';
     document.getElementById('resImg').alt = 'Sei un ' + arch.name;
-    document.getElementById('resImgMobile').src = 'assets/img/res-' + base + '-m-top.png?v=3';
+    document.getElementById('resImgMobile').src = 'assets/img/res-' + base + '-m-top.png?v=4';
     document.getElementById('resImgMobile').alt = 'Sei un ' + arch.name;
-    document.getElementById('resFootMobile').src = 'assets/img/res-' + base + '-m-foot.png?v=3';
+    document.getElementById('resFootMobile').src = 'assets/img/res-' + base + '-m-foot.png?v=4';
     document.title = arch.name + ' — Abstract Entity Atlas';
 
     document.getElementById('downloadBtn').addEventListener('click', () => {
